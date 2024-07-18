@@ -49,6 +49,7 @@ public final class InvoiceService implements Serve {
         current.setTotal(update.getTotal());
         current.setInvoiceId(update.getInvoiceId());
         current.setDate(update.getDate());
+        repo.save(current);
     }
     /**
      * @name    delete
