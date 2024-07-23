@@ -58,7 +58,6 @@ public final class InvoiceController implements Control {
     @Override
     @DeleteMapping("/api/invoices/{id}")
     public String delete(@PathVariable int pk) {
-        service.delete(pk);
-        return "Invoice deleted.";
+        return service.delete(pk);
     }
 }
