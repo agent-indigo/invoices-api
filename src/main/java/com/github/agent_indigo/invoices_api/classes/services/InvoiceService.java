@@ -29,8 +29,8 @@ public final class InvoiceService implements Serve {
      * @route   POST /api/invoices
      * @access  private
      */
-    public void add(InvoiceEntity invoice) {
-        repo.save(invoice);
+    public InvoiceEntity add(InvoiceEntity invoice) {
+        return repo.save(invoice);
     }
     /**
      * @name    edit
@@ -38,7 +38,7 @@ public final class InvoiceService implements Serve {
      * @route   PUT /api/invoices/{id}
      * @access  private
      */
-    public void edit (
+    public InvoiceEntity edit (
         int pk,
         InvoiceEntity update
     ) {
@@ -49,7 +49,7 @@ public final class InvoiceService implements Serve {
         current.setTotal(update.getTotal());
         current.setInvoiceId(update.getInvoiceId());
         current.setDate(update.getDate());
-        repo.save(current);
+        return repo.save(current);
     }
     /**
      * @name    delete
@@ -58,7 +58,8 @@ public final class InvoiceService implements Serve {
      * @access  private
      */
     @Override
-    public void delete(int pk) {
+    public String delete(int pk) {
         repo.deleteById(pk);
+        return "Invoice deleted.";
     }
 }

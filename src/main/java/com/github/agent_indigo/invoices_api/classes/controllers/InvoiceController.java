@@ -33,8 +33,8 @@ public final class InvoiceController implements Control {
      * @access  private
      */
     @PostMapping("/api/invoices")
-    public void add(@RequestBody InvoiceEntity invoice) {
-        service.add(invoice);
+    public InvoiceEntity add(@RequestBody InvoiceEntity invoice) {
+        return service.add(invoice);
     }
     /**
      * @name    edit
@@ -43,11 +43,11 @@ public final class InvoiceController implements Control {
      * @access  private
      */
     @PutMapping("/api/invoices/{id}")
-    public void edit(
+    public InvoiceEntity edit(
         @PathVariable int pk,
         @RequestBody InvoiceEntity update
     ) {
-        service.edit(pk, update);
+        return service.edit(pk, update);
     }
     /**
      * @name    delete
@@ -57,7 +57,8 @@ public final class InvoiceController implements Control {
      */
     @Override
     @DeleteMapping("/api/invoices/{id}")
-    public void delete(@PathVariable int pk) {
+    public String delete(@PathVariable int pk) {
         service.delete(pk);
+        return "Invoice deleted.";
     }
 }

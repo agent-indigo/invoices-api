@@ -4,5 +4,5 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 @Controller
 public interface Control {
     @DeleteMapping
-    void delete(int pk);
+    String delete(int pk);
 }
