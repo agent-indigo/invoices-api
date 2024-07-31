@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  invoices-api-java:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: invoices-api-java:latest
+    ports:
+      - "8080:8080"
