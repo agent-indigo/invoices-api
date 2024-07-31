@@ -1,12 +1,14 @@
 package com.github.agent_indigo.invoices_api.classes.services;
+import java.util.UUID;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.github.agent_indigo.invoices_api.classes.entities.InvoiceEntity;
-import com.github.agent_indigo.invoices_api.interfaces.Serve;
 import com.github.agent_indigo.invoices_api.interfaces.repositories.InvoiceRepository;
-public final class InvoiceService implements Serve {
+@Service
+public final class InvoiceService {
     @Autowired
     private InvoiceRepository repo;
     private InvoiceEntity current;
@@ -39,7 +41,7 @@ public final class InvoiceService implements Serve {
      * @access  private
      */
     public InvoiceEntity edit (
-        int pk,
+        UUID pk,
         InvoiceEntity update
     ) {
         this.current = repo.findById(pk).get();
@@ -57,8 +59,7 @@ public final class InvoiceService implements Serve {
      * @route   DELETE /api/invoices/{id}
      * @access  private
      */
-    @Override
-    public String delete(int pk) {
+    public String delete(UUID pk) {
         repo.deleteById(pk);
         return "Invoice deleted.";
     }

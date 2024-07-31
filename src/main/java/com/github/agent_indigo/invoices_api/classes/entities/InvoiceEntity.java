@@ -1,21 +1,24 @@
 package com.github.agent_indigo.invoices_api.classes.entities;
-import java.sql.Date;
 import com.github.agent_indigo.invoices_api.classes.abstracts.DataEntity;
+import jakarta.persistence.Entity;
+import java.time.ZonedDateTime;
+@Entity
 public final class InvoiceEntity extends DataEntity {
     private String vendor;
     private Float subtotal;
     private Float hst;
     private Float total;
     private String invoiceId;
-    private Date date;
+    private ZonedDateTime date;
     public InvoiceEntity(
         String vendor,
         Float subtotal,
         Float hst,
         Float total,
         String invoiceId,
-        Date date
+        ZonedDateTime date
     ) {
+        super();
         this.vendor = vendor;
         this.subtotal = subtotal;
         this.hst = hst;
@@ -23,7 +26,9 @@ public final class InvoiceEntity extends DataEntity {
         this.invoiceId = invoiceId;
         this.date = date;
     }
-    public InvoiceEntity() {}
+    public InvoiceEntity() {
+        super();
+    }
     public String getVendor() {
         return vendor;
     }
@@ -54,10 +59,10 @@ public final class InvoiceEntity extends DataEntity {
     public void setInvoiceId(String invoiceId) {
         this.invoiceId = invoiceId;
     }
-    public Date getDate() {
+    public ZonedDateTime getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(ZonedDateTime date) {
         this.date = date;
     }
 }

@@ -1,18 +1,16 @@
 package com.github.agent_indigo.invoices_api.classes.abstracts;
-import com.github.agent_indigo.invoices_api.interfaces.PkAccess;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-public abstract class DataEntity implements PkAccess {
+import jakarta.persistence.MappedSuperclass;
+import java.util.UUID;
+@MappedSuperclass
+public abstract class DataEntity {
     @Id
-    @GeneratedValue(generator = "pk")
-    protected int pk;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected UUID pk;
     public DataEntity() {}
-    @Override
-    public final int getPk() {
+    public final UUID getPk() {
         return pk;
-    }
-    @Override
-    public final void setPk(int pk) {
-        this.pk = pk;
     }
 }

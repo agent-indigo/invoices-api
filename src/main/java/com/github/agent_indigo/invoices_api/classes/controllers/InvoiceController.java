@@ -1,16 +1,20 @@
 package com.github.agent_indigo.invoices_api.classes.controllers;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import com.github.agent_indigo.invoices_api.classes.services.InvoiceService;
 import com.github.agent_indigo.invoices_api.classes.entities.InvoiceEntity;
-import com.github.agent_indigo.invoices_api.interfaces.Control;
-public final class InvoiceController implements Control {
+@RestController
+@CrossOrigin
+public final class InvoiceController {
     @Autowired
     private InvoiceService service;
     public InvoiceController() {
@@ -44,7 +48,7 @@ public final class InvoiceController implements Control {
      */
     @PutMapping("/api/invoices/{id}")
     public InvoiceEntity edit(
-        @PathVariable int pk,
+        @PathVariable UUID pk,
         @RequestBody InvoiceEntity update
     ) {
         return service.edit(pk, update);
@@ -55,9 +59,8 @@ public final class InvoiceController implements Control {
      * @route   DELETE /api/invoices/{id}
      * @access  private
      */
-    @Override
     @DeleteMapping("/api/invoices/{id}")
-    public String delete(@PathVariable int pk) {
+    public String delete(@PathVariable UUID pk) {
         return service.delete(pk);
     }
 }
